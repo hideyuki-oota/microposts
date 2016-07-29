@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   
-  validates :profile, presence: true, length: { maximum: 30 }
+  validates :profile, presence: true, on: :update, length: { maximum: 30 }
   
   has_many :microposts
   

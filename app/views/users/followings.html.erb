@@ -1,7 +1,9 @@
 <h3>followings</h3>
 <% @followings.each do |user| %>
-<ol class="followings">
-  <%= gravatar_for(user, size: 50) %>
-  <%= user.name %>
-</ol>
+  <ol class="followings">
+    <li>
+      <%= gravatar_for(user, size: 50) %>
+      <%= user.name %>
+    </li>
+  </ol>
 <% end %>
