@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
+  
+  validates :profile, presence: true, on: :update, length: { maximum: 30 }
+  
   has_many :microposts
   
   has_many :following_relationships, class_name:  "Relationship", foreign_key: "follower_id", dependent:   :destroy
@@ -29,6 +32,9 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following_users.include?(other_user)
   end
+  
+  has_many :following_relationships, class_name:  "Relationship", foreign_key: "follower_id", dependent:   :destroy
+  has_many :following_users, through: :following_relationships, source: :followed
   
   def feed_items
     Micropost.where(user_id: following_user_ids + [self.id])
