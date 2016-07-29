@@ -1,4 +1,8 @@
+<h3>followers</h3>
 <% @followers.each do |user| %>
+  <ol class="followers">
   <%= gravatar_for(user, size: 50) %>
   <%= user.name %>
+  </ol>
 <% end %>
+
